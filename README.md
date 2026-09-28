@@ -2,19 +2,25 @@
 
 A production-grade Retrieval Augmented Generation (RAG) system built in Python.
 
-## Goal
+## Objective
 
-Answer questions from enterprise documents using embeddings, vector databases, and LLMs.
-
-# Enterprise RAG
-
-## Architecture
-
-PDF → Chunk → Embedding → Vector Search
+Build an enterprise AI assistant capable of answering questions from company documents using semantic search, vector databases, and large language models.
 
 ## Tech Stack
 
-- Python
+- Python 3.13
 - Sentence Transformers
-- NumPy
-- PyPDF
+- Qdrant
+- Ollama
+- FastAPI
+- Streamlit
+
+## Project Roadmap
+
+- [x] Environment setup
+- [ ] Semantic Search
+- [ ] RAG Chatbot
+- [ ] GraphRAG
+- [ ] Multi-Agent System
+- [ ] vLLM Backend
+- [ ] Voice AI
