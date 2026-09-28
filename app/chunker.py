@@ -1,22 +1,19 @@
 class TextChunker:
 
-    def split(
-        self,
-        text,
-        size=500,
-        overlap=100
-    ):
+    def split(self, text, size=500, overlap=100):
 
-        chunks=[]
+        chunks = []
 
-        start=0
+        start = 0
 
         while start < len(text):
 
-            end=start+size
+            end = start + size
 
-            chunks.append(text[start:end])
+            chunk = text[start:end]
 
-            start+=size-overlap
+            chunks.append(chunk)
+
+            start += size - overlap
 
         return chunks
