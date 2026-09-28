@@ -15,6 +15,6 @@ class PDFLoader:
 # --- RUN / TEST SECTION ---
 if __name__ == "__main__":
     loader = PDFLoader()
-    pdf_path = Path(__file__).resolve().parent.parent / "data" / "pdfs" / "sodapdf-converted.pdf"
+    pdf_path = Path(__file__).resolve().parent.parent / "data" / "pdfs" / "machine-learning.pdf"
     text = loader.load(pdf_path)
     print(text[:500])

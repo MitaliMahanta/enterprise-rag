@@ -28,7 +28,7 @@ class VectorStore:
                 ),
             )
 
-    def add_chunk(self, vector, text):
+    def add_chunk(self, vector, text, source, chunk_id):
 
         self.client.upsert(
             collection_name=self.collection,
@@ -36,7 +36,21 @@ class VectorStore:
                 PointStruct(
                     id=str(uuid.uuid4()),
                     vector=vector.tolist(),
-                    payload={"text": text},
+                    payload={
+                        "text": text,
+                        "source": source,
+                        "chunk_id": chunk_id,
+                    },
                 )
             ],
         )
+
+    def search(self, vector, limit=5):
+
+        results = self.client.query_points(
+            collection_name=self.collection,
+            query=vector.tolist(),
+            limit=limit,
+        ).points
+
+        return results
