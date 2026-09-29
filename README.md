@@ -15,12 +15,37 @@ Build an enterprise AI assistant capable of answering questions from company doc
 - FastAPI
 - Streamlit
 
-## Project Roadmap
+---
 
-- [x] Environment setup
-- [ ] Semantic Search
-- [ ] RAG Chatbot
-- [ ] GraphRAG
-- [ ] Multi-Agent System
-- [ ] vLLM Backend
-- [ ] Voice AI
+## Getting Started
+
+### 1. Run Qdrant Vector Store
+
+Ensure Qdrant is running locally via Docker:
+
+```bash
+docker run -p 6333:6333 qdrant/qdrant
+
+2. Index Documents & Search
+    1.Place your target PDF into data/pdfs/ (e.g., data/pdfs/machine-learning.pdf).
+
+    2.Run the indexing pipeline:
+    python -m app.index_pdf
+
+    3.Run the interactive search script to query indexed vectors with citations:
+    python -m app.search
+
+Project Roadmap
+[x] Environment setup
+
+[x] Semantic Search
+
+[ ] RAG Chatbot
+
+[ ] GraphRAG
+
+[ ] Multi-Agent System
+
+[ ] vLLM Backend
+
+[ ] Voice AI
