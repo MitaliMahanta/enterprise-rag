@@ -19,7 +19,6 @@ class VectorStore:
         names = [c.name for c in collections]
 
         if self.collection not in names:
-
             self.client.create_collection(
                 collection_name=self.collection,
                 vectors_config=VectorParams(

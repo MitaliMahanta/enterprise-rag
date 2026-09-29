@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 
+# Add root directory to sys.path to resolve 'app' imports cleanly
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.embeddings import EmbeddingEngine
@@ -11,23 +12,21 @@ def search(query: str, top_k: int = 5):
     engine = EmbeddingEngine()
     query_vector = engine.embed(query)
 
-    # 2. Query Qdrant for the nearest vectors
+    # 2. Query Qdrant for nearest vectors using your VectorStore search method
     store = VectorStore()
-    
-    results = store.client.query_points(
-        collection_name=store.collection,
-        query=query_vector,
-        limit=top_k
-    )
+    results = store.search(query_vector, limit=top_k)
 
-    # 3. Print the top results
+    # 3. Print top results with citations
     print(f"\nQuestion:\n{query}\n")
-    for idx, hit in enumerate(results.points, 1):
-        text = hit.payload.get("text", "")
-        print(f"Result {idx}")
+    for idx, hit in enumerate(results, 1):
+        payload = hit.payload or {}
+        text = payload.get("text", "")
+        source = payload.get("source", "unknown")
+        chunk_id = payload.get("chunk_id", "unknown")
+        
+        print(f"Result {idx} [{source}, chunk {chunk_id}]")
         print(f"{text}\n")
 
 if __name__ == "__main__":
-    # Prompt the user for a question in the terminal
     user_query = input("Enter your question: ")
     search(user_query)

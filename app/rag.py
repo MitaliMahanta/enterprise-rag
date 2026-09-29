@@ -2,7 +2,9 @@ from embeddings import EmbeddingEngine
 from vector_store import VectorStore
 from llm import LLM
 from prompt import build_prompt
+from logging_config import get_logger
 
+logger = get_logger(__name__)
 
 class RAG:
 
@@ -13,7 +15,7 @@ class RAG:
         self.llm = LLM()
 
     def answer(self, question):
-
+        logger.info("Starting retrieval")
         query_vector = self.embedding_engine.embed(question)
 
         results = self.vector_store.search(
