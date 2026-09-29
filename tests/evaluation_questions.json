@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is fine-tuning?",
+    "expected_topic": "fine-tuning"
+  },
+  {
+    "question": "What is BERT?",
+    "expected_topic": "BERT"
+  },
+  {
+    "question": "What is self-attention?",
+    "expected_topic": "self-attention"
+  },
+  {
+    "question": "What is an attention mask?",
+    "expected_topic": "attention mask"
+  },
+  {
+    "question": "What is inference?",
+    "expected_topic": "inference"
+  },
+  {
+    "question": "What is an embedding?",
+    "expected_topic": "embedding"
+  },
+  {
+    "question": "What is a transformer?",
+    "expected_topic": "transformer"
+  },
+  {
+    "question": "What is tokenization?",
+    "expected_topic": "tokenization"
+  },
+  {
+    "question": "What is the purpose of positional encoding?",
+    "expected_topic": "positional encoding"
+  },
+  {
+    "question": "What is the difference between training and inference?",
+    "expected_topic": "training and inference"
+  }
+]
