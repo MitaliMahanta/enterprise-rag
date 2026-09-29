@@ -35,6 +35,7 @@ Pygments==2.21.0
 pypdf==6.19.0
 PyYAML==6.0.3
 qdrant-client==1.19.1
+rank-bm25==0.2.2
 regex==2026.9.10
 rich==15.0.0
 safetensors==0.8.0
