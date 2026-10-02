@@ -1,32 +1,33 @@
+from app.retrieval.dense import DenseRetriever
+from app.retrieval.bm25 import BM25Retriever
+from app.retrieval.hybrid import HybridRetriever
 from app.retrieval.reranker import CrossEncoderReranker
+from app.models import RetrievedChunk
+from app.services.document_service import DocumentService
 
 
 class RetrievalPipeline:
+    def __init__(self):
+        documents = DocumentService().load_documents()
 
-    def __init__(
-        self,
-        hybrid_retriever,
-        reranker: CrossEncoderReranker,
-    ):
-        self.hybrid_retriever = hybrid_retriever
-        self.reranker = reranker
+        self.dense = DenseRetriever()
+        if documents:
+            self.dense.vector_store.create_collection()
+            self.dense.index_documents(documents)
 
-    def retrieve(
-        self,
-        query: str,
-        retrieval_k: int = 20,
-        final_k: int = 5,
-    ):
-
-        candidates = self.hybrid_retriever.search(
-            query,
-            top_k=retrieval_k,
+        self.bm25 = BM25Retriever(documents)
+        self.hybrid = HybridRetriever(
+            dense_retriever=self.dense,
+            bm25_retriever=self.bm25,
         )
+        self.reranker = CrossEncoderReranker()
 
-        reranked = self.reranker.rerank(
-            query=query,
-            documents=candidates,
-            top_k=final_k,
-        )
+    def run(self, query: str, candidate_k: int = 20, rerank_k: int = 5) -> tuple[list[RetrievedChunk], list[RetrievedChunk]]:
+        # 1. Fetch Top 20 via Hybrid RRF
+        candidates = self.hybrid.retrieve(query, top_k=candidate_k)
+        if not candidates:
+            return [], []
 
-        return reranked
+        # 2. Rerank down to Top 5 via Cross-Encoder
+        reranked = self.reranker.rerank(query, candidates, top_k=rerank_k)
+        return candidates, reranked
