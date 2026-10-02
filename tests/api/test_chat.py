@@ -19,6 +19,23 @@ def test_chat_empty_question():
     assert response.json()["detail"] == "Question cannot be empty."
 
 
+def test_document_upload_returns_valid_response():
+    pdf_path = "data/pdfs/machine-learning.pdf"
+
+    with open(pdf_path, "rb") as pdf_file:
+        response = client.post(
+            "/api/v1/documents/upload",
+            files={"file": ("machine-learning.pdf", pdf_file, "application/pdf")},
+        )
+
+    assert response.status_code == 200
+    data = response.json()
+    assert set(data.keys()) == {"document_id", "filename", "status", "chunks"}
+    assert data["filename"] == "machine-learning.pdf"
+    assert data["status"] == "indexed"
+    assert data["chunks"] > 0
+
+
 def test_chat_returns_rag_response():
     fake_response = ChatResponse(
         question="What is supervised learning?",
