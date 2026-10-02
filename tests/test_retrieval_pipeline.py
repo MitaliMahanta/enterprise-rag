@@ -47,7 +47,7 @@ class DummyReranker:
         return documents[:top_k]
 
 
-def test_retrieval_pipeline_indexes_documents_on_init(monkeypatch):
+def test_retrieval_pipeline_does_not_reindex_documents_on_init(monkeypatch):
     monkeypatch.setattr(pipeline_module, "DocumentService", DummyDocumentService)
     monkeypatch.setattr(pipeline_module, "DenseRetriever", DummyDenseRetriever)
     monkeypatch.setattr(pipeline_module, "BM25Retriever", DummyBM25Retriever)
@@ -56,5 +56,5 @@ def test_retrieval_pipeline_indexes_documents_on_init(monkeypatch):
 
     pipeline = pipeline_module.RetrievalPipeline()
 
-    assert len(pipeline.dense.indexed) == 2
-    assert pipeline.dense.indexed[0].source == "bert.pdf"
+    assert len(pipeline.dense.indexed) == 0
+    assert pipeline.bm25.documents[0].source == "bert.pdf"
