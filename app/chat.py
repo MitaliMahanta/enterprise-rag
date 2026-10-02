@@ -1,19 +1,69 @@
-from rag import RAG
+# app/chat.py
+import sys
+from pathlib import Path
+
+# Add project root to sys.path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from app.rag import RAGPipeline
 
 
-rag = RAG()
+def main():
+    rag = RAGPipeline()
+    print("\n🤖 Enterprise RAG Chat Ready! (Type 'exit' or 'quit' to stop)\n")
 
-print("Enterprise RAG Assistant")
-print("Type 'exit' to quit.")
+    while True:
+        try:
+            question = input("\nYou: ")
+            if not question.strip():
+                continue
+            if question.strip().lower() in ["exit", "quit"]:
+                print("\nExiting chat session.")
+                break
 
-while True:
+            # Get structured output from RAG pipeline
+            result = rag.answer(question)
 
-    question = input("\nYou: ")
+            # Format and print structured output
+            print("\n--------------------------------------------------")
+            print(f"Question:\n{result['question']}\n")
+            print(f"Retrieval:\n{result['retrieval_method']}\n")
+            print(f"Hybrid candidates:\n{result['hybrid_candidates']}\n")
+            print(f"Reranked:\n{result['reranked_count']}\n")
 
-    if question.lower() == "exit":
-        break
+            print("Sources:")
+            if result["sources"]:
+                for src in result["sources"]:
+                    print(src)
+            else:
+                print("None")
 
-    answer = rag.answer(question)
+            print(f"\nAnswer:\n{result['answer']}")
+            print("--------------------------------------------------")
 
-    print("\nAssistant:")
-    print(answer)
+        except KeyboardInterrupt:
+            print("\nExiting chat session.")
+            break
+
+
+if __name__ == "__main__":
+    main()
+
+# from .rag import RAG
+
+# rag = RAG()
+
+# print("Enterprise RAG Assistant")
+# print("Type 'exit' to quit.")
+
+# while True:
+
+#     question = input("\nYou: ")
+
+#     if question.lower() == "exit":
+#         break
+
+#     answer = rag.answer(question)
+
+#     print("\nAssistant:")
+#     print(answer)
