@@ -52,3 +52,15 @@ class ChatResponse(BaseModel):
 class IndexResponse(BaseModel):
     status: str
     indexed_documents: int
+
+class DocumentUploadResponse(BaseModel):
+    document_id: str
+    filename: str
+    status: str
+    chunks: int
+
+class DocumentStatusResponse(BaseModel):
+    document_id: str
+    filename: str
+    status: str
+    chunks: int
