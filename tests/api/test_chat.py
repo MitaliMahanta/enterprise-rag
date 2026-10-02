@@ -3,7 +3,7 @@ from unittest.mock import patch
 from fastapi.testclient import TestClient
 
 from app.main import app
-from app.models import ChatResponse, SourceResponse
+from app.models import ChatResponse, SourceResponse, ChatMetadata
 
 
 client = TestClient(app)
@@ -34,6 +34,17 @@ def test_chat_returns_rag_response():
             )
         ],
         answer="Supervised learning maps an input to an output using example input-output pairs.",
+        metadata=ChatMetadata(
+        dense_latency_ms=30.0,
+        bm25_latency_ms=10.0,
+        rrf_latency_ms=2.0,
+        retrieval_pipeline_latency_ms=100.0,
+        reranker_latency_ms=58.0,
+        llm_latency_ms=200.0,
+        total_latency_ms=300.0,
+        candidate_count=20,
+        reranked_count=5,
+),
     )
 
     with patch(
@@ -58,3 +69,14 @@ def test_chat_returns_rag_response():
     assert data["sources"][0]["chunk_id"] == 42
     assert data["sources"][0]["source"] == "machine-learning.pdf"
     assert data["sources"][0]["retrieval_method"] == "reranker"
+
+    assert "metadata" in data
+    assert data["metadata"]["dense_latency_ms"] == 30.0
+    assert data["metadata"]["bm25_latency_ms"] == 10.0
+    assert data["metadata"]["rrf_latency_ms"] == 2.0
+    assert data["metadata"]["reranker_latency_ms"] == 58.0
+    assert data["metadata"]["candidate_count"] == 20
+    assert data["metadata"]["reranked_count"] == 5
+    assert data["metadata"]["retrieval_pipeline_latency_ms"] == 100.0
+    assert data["metadata"]["llm_latency_ms"] == 200.0
+    assert data["metadata"]["total_latency_ms"] == 300.0
