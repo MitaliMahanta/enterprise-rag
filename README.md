@@ -312,3 +312,14 @@ Your current README has several sections that repeat the same information—for 
 I also removed the repeated **“Running Locally”** heading/clone instructions and consolidated the API, observability, evaluation, and capabilities sections. Your current file literally has the local setup beginning twice. :chatgpt-content-reference{index="3"}
 
 This version should feel much more like a **real GitHub product repository README** rather than development notes.
+
+
+
+## License
+
+Copyright ©️ 2026 Mitali Mahanta. All rights reserved.
+
+This project is publicly available for portfolio, demonstration, and
+educational purposes. Commercial use, redistribution, reproduction,
+or creation of derivative works based on this source code is not
+permitted without prior written permission.
