@@ -4,7 +4,7 @@ A production-grade Retrieval Augmented Generation (RAG) system built in Python.
 
 ## Objective
 
-Build an enterprise AI assistant capable of answering questions from company documents using semantic search, vector databases, and large language models.
+Build an Pulse AI assistant capable of answering questions from company documents using semantic search, vector databases, and large language models.
 
 ## Tech Stack
 

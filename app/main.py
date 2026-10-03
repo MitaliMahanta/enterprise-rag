@@ -10,7 +10,7 @@ from app.config import settings
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    description="Enterprise AI Assistant backend",
+    description="Pulse AI Assistant backend",
     version="0.1.0",
 )
 
