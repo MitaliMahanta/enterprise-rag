@@ -302,18 +302,6 @@ Measure
 Act — with approval
 
 Pulse AI explores how AI can become a measurable, observable, and evidence-backed intelligence layer for engineering workflows.
-License
-This project is currently intended as a personal engineering project and portfolio demonstration.
-
-### What I removed
-
-Your current README has several sections that repeat the same information—for example, the **Enterprise Architecture + Multi-Agent flow + Example Investigation** are essentially describing the same workflow three times. :chatgpt-content-reference{index="1"} :chatgpt-content-reference{index="2"}
-
-I also removed the repeated **“Running Locally”** heading/clone instructions and consolidated the API, observability, evaluation, and capabilities sections. Your current file literally has the local setup beginning twice. :chatgpt-content-reference{index="3"}
-
-This version should feel much more like a **real GitHub product repository README** rather than development notes.
-
-
 
 ## License
 
