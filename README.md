@@ -179,7 +179,9 @@ The system tracks AI pipeline performance across:
 - Candidate count
 - Reranked count
 - Recall@K
+
 The goal is to make RAG systems measurable, observable, and traceable.
+
 Technology Stack
 AI / RAG
 RAG · Dense Retrieval · BM25 · Hybrid Retrieval · RRF · Cross-Encoder Reranking · Embeddings · RAG Evaluation · Agentic AI
@@ -193,6 +195,7 @@ Engineering
 Docker · Git · GitHub · Pytest · API Testing
 Enterprise
 Jira · GitHub · Slack · Enterprise Knowledge Sources
+
 Project Structure
 enterprise-rag/
 │
@@ -271,6 +274,7 @@ Current Foundation
 - API testing
 - Multi-agent orchestration concepts
 - Enterprise connector experiences
+
 Roadmap
 - [ ] Persistent document registry
 - [ ] Multi-document ingestion improvements
@@ -286,6 +290,7 @@ Roadmap
 - [ ] Human-approved actions
 - [ ] Enterprise authentication and authorization
 - [ ] Production deployment
+
 Engineering Philosophy
 Retrieve
    ↓
