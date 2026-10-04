@@ -308,11 +308,18 @@ Act — with approval
 
 Pulse AI explores how AI can become a measurable, observable, and evidence-backed intelligence layer for engineering workflows.
 
+---
+
 ## License
 
-Copyright ©️ 2026 Mitali Mahanta. All rights reserved.
+Copyright © 2026 Mitali Mahanta. All rights reserved.
 
-This project is publicly available for portfolio, demonstration, and
-educational purposes. Commercial use, redistribution, reproduction,
-or creation of derivative works based on this source code is not
-permitted without prior written permission.
+Pulse AI is proprietary software. The source code is publicly
+available for viewing and evaluation purposes only.
+
+Commercial use, redistribution, modification, sublicensing, or
+incorporation into another commercial product requires prior
+written permission from the copyright owner.
+
+For commercial licensing, enterprise deployment, partnership,
+or authorized use, please contact the copyright owner.
