@@ -1,7 +1,30 @@
+# Python
 .venv/
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Environment / secrets
 .env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# OS
 .DS_Store
-.vscode/settings.json
+
+# Uploaded / private data
 data/uploads/
+data/raw/
+data/processed/
+
+# Model artifacts
+models/
+checkpoints/
+runs/
+wandb/
+
+# Logs
+*.log
